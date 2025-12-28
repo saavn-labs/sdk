@@ -1,0 +1,7 @@
+node_modules/
+*.log
+.DS_Store
+tsconfig.json
+bun.lock
+*.test.ts
+*.spec.ts

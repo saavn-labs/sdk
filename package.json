@@ -1,0 +1,69 @@
+{
+  "name": "@saavn-labs/sdk",
+  "version": "0.1.0",
+  "description": "A low-level, type-safe TypeScript SDK over JioSaavn’s native API, built for developers who want full control, predictable contracts, and long-term stability.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "test": "vitest",
+    "test:run": "vitest run",
+    "prettier": "prettier --write ."
+  },
+  "keywords": [
+    "saavn-labs",
+    "jiosaavn",
+    "saavn",
+    "music",
+    "api",
+    "sdk",
+    "typescript",
+    "cloudflare-workers",
+    "vercel-serverless",
+    "bun",
+    "deno",
+    "streaming",
+    "download",
+    "songs",
+    "albums",
+    "artists",
+    "playlists",
+    "trending"
+  ],
+  "author": "Saavn Labs <saavnlabs@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/saavn-labs/sdk.git"
+  },
+  "bugs": {
+    "url": "https://github.com/saavn-labs/sdk/issues"
+  },
+  "homepage": "https://github.com/saavn-labs/sdk#readme",
+  "dependencies": {
+    "zod": "^4.2.1"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "prettier": "^3.7.4",
+    "typescript": "^5.9.3",
+    "vite-tsconfig-paths": "^6.0.3",
+    "vitest": "^4.0.16"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
