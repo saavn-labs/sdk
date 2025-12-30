@@ -1,16 +1,15 @@
 import { runSaavnTestCases } from '../helpers/spec.helper';
-import { SaavnGetReco } from '../../src/saavn/operations/get-reco/index';
+import { SaavnGetRecoSchema } from '../../src/saavn/operations';
 
 const GROUP_NAME = 'Get Reco';
 
 const testCases = [
-  { key: 'albums', request: 'Get Album Reco', op: SaavnGetReco.albums },
+  { request: 'Get Album Reco', op: SaavnGetRecoSchema.albums },
   {
-    key: 'playlists',
     request: 'Get Playlist Reco',
-    op: SaavnGetReco.playlists,
+    op: SaavnGetRecoSchema.playlists,
   },
-  { key: 'songs', request: 'Get Song Reco', op: SaavnGetReco.songs },
+  { request: 'Get Song Reco', op: SaavnGetRecoSchema.songs },
 ];
 
 runSaavnTestCases(GROUP_NAME, testCases);

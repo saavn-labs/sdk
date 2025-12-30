@@ -11,9 +11,9 @@ export type ClientContext = 'web6dot0' | 'android';
  * Parameters for making an API request to JioSaavn
  */
 export interface FetchParams {
-  /** API operation to call (e.g., 'song.getDetails') */
-  operation: string;
-  /** Query parameters for the API operation */
+  /** API call to op (e.g., 'song.getDetails') */
+  call: string;
+  /** Query parameters for the API call */
   params?: Record<string, string | number | boolean>;
   /** API context to use (default: 'web6dot0') */
   context?: ClientContext;
@@ -30,7 +30,7 @@ export interface FetchParams {
 }
 
 /**
- * Standardized API response wrapper returned by all fetch operations
+ * Standardized API response wrapper returned by all fetch calls
  * @template T - Type of the response data
  */
 export interface FetchResponse<T> {
@@ -58,7 +58,7 @@ const BASE_URL = 'https://www.jiosaavn.com';
  *
  * @example
  * const response = await fetchFromSaavn<{ songs: Song[] }>({
- *   operation: 'song.getDetails',
+ *   call: 'song.getDetails',
  *   params: { pids: 'song-id-123' }
  * });
  *
@@ -69,7 +69,7 @@ const BASE_URL = 'https://www.jiosaavn.com';
  */
 
 export const fetchFromSaavn = async <T = unknown>({
-  operation,
+  call,
   params = {},
   context = 'web6dot0',
   baseUrl = BASE_URL,
@@ -79,7 +79,7 @@ export const fetchFromSaavn = async <T = unknown>({
 }: FetchParams): Promise<FetchResponse<T>> => {
   const url = new URL(`${baseUrl}/api.php`);
 
-  url.searchParams.append('__call', operation as string);
+  url.searchParams.append('__call', call as string);
   url.searchParams.append('_format', 'json');
   url.searchParams.append('_marker', '0');
   url.searchParams.append('api_version', '4');
@@ -94,6 +94,8 @@ export const fetchFromSaavn = async <T = unknown>({
   const timeout = timeoutMs
     ? setTimeout(() => controller?.abort(), timeoutMs)
     : undefined;
+
+  console.log('Fetching URL:', url.toString());
 
   const response = await fetch(url.toString(), {
     headers: {
@@ -122,6 +124,7 @@ export const fetchFromSaavn = async <T = unknown>({
   ) {
     return { data: data as T, ok: false, status: response.status };
   }
-
+  
+  console.log('Fetched Data:', response.status);
   return { data: data as T, ok: response.ok, status: response.status };
 };

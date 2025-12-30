@@ -10,8 +10,8 @@ export interface ClientConfig {
 
 export type SaavnOperation = {
   call: string;
-  params: z.ZodType;
-  response: z.ZodType;
+  paramsSchema: z.ZodType;
+  responseSchema: z.ZodType;
 };
 
 export interface SaavnURLToken {

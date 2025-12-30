@@ -1,0 +1,3 @@
+// search-results mapper
+
+export {}

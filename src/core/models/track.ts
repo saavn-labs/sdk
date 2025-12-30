@@ -1,9 +1,9 @@
-import type { EntityId, Image } from '../types/primitives';
+import type { Image } from '../types/primitives';
 import type { Context } from '../types/context';
 import type { Artist } from '.';
 
 export interface Track {
-  id: EntityId;
+  id: string;
   type: 'track';
 
   title: string;
@@ -13,7 +13,7 @@ export interface Track {
   images: Image[];
 
   album?: {
-    id?: EntityId;
+    id?: string;
     title?: string;
     url?: string;
   };
@@ -57,7 +57,7 @@ export interface Track {
   meta?: {
     copyright?: string;
     label?: {
-      id?: EntityId;
+      id?: string;
       name?: string;
       url?: string;
     };

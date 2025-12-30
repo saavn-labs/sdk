@@ -50,24 +50,28 @@ function getPostmanCase(group: string, requestName: string) {
   return {
     params,
     response,
-    call: reqItem.request?.url?.path?.join('.') ?? 'unknown',
+    op: reqItem.request?.url?.path?.join('.') ?? 'unknown',
   };
 }
 
 export function runSaavnTestCases(
   groupName: string,
-  testCases: Array<{ key: string; request: string; op: SaavnOperation }>,
+  testCases: Array<{ request: string; op: SaavnOperation }>,
 ) {
-  testCases.forEach(({ key, request, op }) => {
-    const testName = `Saavn${groupName.trim()} > ${key}`;
+  testCases.forEach(({ request, op }) => {
+    const testName = `Saavn${groupName.trim()} > ${request}`;
 
     describe(testName, () => {
       it(`validates against (${op.call})`, () => {
         const { params, response } = getPostmanCase(groupName, request);
-        const userParams = extractUserParams(params, op.params);
+        const userParams = extractUserParams(params, op.paramsSchema);
 
-        expectSchema(op.params, userParams, `${request} > params`);
-        expectSchema(op.response, response, `${request} > response`);
+        expectSchema(op.paramsSchema, userParams, `${request} > paramsSchema`);
+        expectSchema(
+          op.responseSchema,
+          response,
+          `${request} > responseSchema`,
+        );
       });
     });
   });

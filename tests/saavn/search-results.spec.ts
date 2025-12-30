@@ -1,18 +1,17 @@
 import { runSaavnTestCases } from '../helpers/spec.helper';
-import { SaavnSearchResults } from '../../src/saavn/operations/search-results/index';
+import { SaavnSearchResultsSchema } from '../../src/saavn/operations';
 
 const GROUP_NAME = 'Search Results';
 
 const testCases = [
-  { key: 'all', request: 'Search All', op: SaavnSearchResults.all },
-  { key: 'albums', request: 'Search Albums', op: SaavnSearchResults.albums },
-  { key: 'artists', request: 'Search Artists', op: SaavnSearchResults.artists },
+  { request: 'Search All', op: SaavnSearchResultsSchema.all },
+  { request: 'Search Albums', op: SaavnSearchResultsSchema.albums },
+  { request: 'Search Artists', op: SaavnSearchResultsSchema.artists },
   {
-    key: 'playlists',
     request: 'Search Playlists',
-    op: SaavnSearchResults.playlists,
+    op: SaavnSearchResultsSchema.playlists,
   },
-  { key: 'songs', request: 'Search Songs', op: SaavnSearchResults.songs },
+  { request: 'Search Songs', op: SaavnSearchResultsSchema.songs },
 ];
 
 runSaavnTestCases(GROUP_NAME, testCases);

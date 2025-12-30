@@ -1,21 +1,19 @@
 import { runSaavnTestCases } from '../helpers/spec.helper';
-import { SaavnGetTrending } from '../../src/saavn/operations/get-trending/index';
+import { SaavnGetTrendingSchema } from '../../src/saavn/operations';
 
 const GROUP_NAME = 'Get Trending';
 
 const testCases = [
-  { key: 'all', request: 'Get Trending All', op: SaavnGetTrending.all },
+  { request: 'Get Trending All', op: SaavnGetTrendingSchema.all },
   {
-    key: 'albums',
     request: 'Get Trending Albums',
-    op: SaavnGetTrending.albums,
+    op: SaavnGetTrendingSchema.albums,
   },
   {
-    key: 'playlists',
     request: 'Get Trending Playlists',
-    op: SaavnGetTrending.playlists,
+    op: SaavnGetTrendingSchema.playlists,
   },
-  { key: 'songs', request: 'Get Trending Songs', op: SaavnGetTrending.songs },
+  { request: 'Get Trending Songs', op: SaavnGetTrendingSchema.songs },
 ];
 
 runSaavnTestCases(GROUP_NAME, testCases);

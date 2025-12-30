@@ -33,6 +33,7 @@
     "typescript",
     "cloudflare-workers",
     "vercel-serverless",
+    "vercel-edge",
     "bun",
     "deno",
     "streaming",
@@ -48,6 +49,9 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/saavn-labs/sdk.git"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "bugs": {
     "url": "https://github.com/saavn-labs/sdk/issues"

@@ -8,7 +8,7 @@ import {
 import { SaavnPlaylistSearchEntity } from './playlist.entity';
 
 export const SaavnAlbumEdgeCase = SaavnAlbumBase.extend({
-  more_info: z.strictObject({
+  more_info: z.looseObject({
     query: z.string(),
     text: z.string(),
     music: z.string(),
@@ -20,7 +20,6 @@ export const SaavnAlbumEdgeCase = SaavnAlbumBase.extend({
 export const SaavnPlaylistEdgeCase = SaavnPlaylistSearchEntity.omit({
   description: true,
 }).extend({
-  numsongs: z.null(),
   more_info: SaavnPlaylistSearchEntity.shape.more_info.extend({
     uid: z.string(),
     song_count: z.string(),
@@ -29,18 +28,16 @@ export const SaavnPlaylistEdgeCase = SaavnPlaylistSearchEntity.omit({
 
 export const SaavnSearchAllEntity = SaavnAlbumCore.extend({
   description: z.string(),
-  mini_obj: z.boolean(),
-  more_info: z.strictObject({
+  more_info: z.looseObject({
     music: z.string(),
     ctr: z.number(),
     year: z.string(),
-    is_movie: z.string(),
     language: z.string(),
     song_pids: z.string(),
   }),
 });
 
-export const SaavnTopSearchesEntity = z.strictObject({
+export const SaavnTopSearchesEntity = z.looseObject({
   id: z.string(),
   title: z.string(),
   subtitle: z.string(),
@@ -48,10 +45,8 @@ export const SaavnTopSearchesEntity = z.strictObject({
   image: z.string(),
   perma_url: z.string(),
   explicit_content: z.string(),
-  mini_obj: z.boolean(),
-  more_info: z.strictObject({
+  more_info: z.looseObject({
     album: z.string(),
     artistMap: z.array(SaavnArtistBase),
-    is_jiotune_available: z.string().optional(),
   }),
 });

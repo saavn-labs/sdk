@@ -1,0 +1,3 @@
+// get-trending mapper
+
+export {}

@@ -33,27 +33,23 @@ export const SaavnArtistEntity = z.lazy(() =>
       SaavnAlbumEdgeCase.extend({ description: z.string() }),
     ),
     similarArtists: z.array(z.any()),
-    urls: z.strictObject({
+    urls: z.looseObject({
       albums: z.string(),
       bio: z.string(),
       comments: z.string(),
       songs: z.string(),
       overview: z.string(),
     }),
-    modules: z.any(),
   }),
 );
 
-export const SaavnArtistSearchEntity = z.strictObject({
+export const SaavnArtistSearchEntity = z.looseObject({
   id: z.string(),
   title: z.string(),
   image: z.string(),
-  extra: z.string(),
   type: z.literal('artist'),
-  mini_obj: z.boolean(),
   isRadioPresent: z.boolean(),
   ctr: z.number(),
-  entity: z.number(),
   description: z.string(),
   position: z.number(),
 });

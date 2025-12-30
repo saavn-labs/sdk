@@ -9,8 +9,7 @@ export const SaavnAlbumEntity = z.lazy(() =>
     list_count: z.string(),
     list_type: z.literal('song'),
     list: z.array(z.lazy(() => SaavnSongEntity)),
-    modules: z.any(),
-    more_info: z.strictObject({
+    more_info: z.looseObject({
       song_count: z.string(),
       copyright_text: z.string(),
       is_dolby_content: z.boolean(),
@@ -22,7 +21,7 @@ export const SaavnAlbumEntity = z.lazy(() =>
 
 export const SaavnTrendingAlbum = SaavnTrendingBase.extend({
   type: z.literal('album'),
-  more_info: z.strictObject({
+  more_info: z.looseObject({
     release_date: z.string(),
     song_count: z.string(),
     artistMap: SaavnArtistMap,

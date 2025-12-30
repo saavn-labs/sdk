@@ -7,7 +7,7 @@ import {
 } from './base';
 
 export const SaavnSongEntity = SaavnSongBase.extend({
-  more_info: z.strictObject({
+  more_info: z.looseObject({
     music: z.string(),
     album_id: z.string(),
     album: z.string(),
@@ -15,40 +15,25 @@ export const SaavnSongEntity = SaavnSongBase.extend({
     label_id: z.union([z.string(), z.null()]),
     origin: z.string(),
     is_dolby_content: z.boolean(),
-    '320kbps': z.string(),
     encrypted_media_url: z.string(),
-    encrypted_cache_url: z.string(),
-    encrypted_drm_cache_url: z.string(),
     encrypted_drm_media_url: z.string(),
     album_url: z.string(),
     duration: z.string(),
-    cache_state: z.string(),
     has_lyrics: z.string(),
     lyrics_snippet: z.string(),
     lyrics_id: z.string().optional(),
-    starred: z.string(),
     copyright_text: z.string(),
     release_date: z.union([z.string(), z.null()]),
     label_url: z.string().optional(),
     vcode: z.string().optional(),
     vlink: z.string().optional(),
-    triller_available: z.boolean(),
-    request_jiotune_flag: z.boolean(),
-    webp: z.string(),
-    rights: z.strictObject({
-      code: z.string(),
-      cacheable: z.string(),
-      delete_cached_object: z.string().optional(),
-      reason: z.string().optional(),
-    }),
     artistMap: z.lazy(() => SaavnArtistMap),
   }),
 });
 
 export const SaavnSongSearchEntity = SaavnSongCore.extend({
-  mini_obj: z.boolean(),
   description: z.string(),
-  more_info: z.strictObject({
+  more_info: z.looseObject({
     album: z.string(),
     album_id: z.string(),
     ctr: z.number(),
@@ -57,8 +42,6 @@ export const SaavnSongSearchEntity = SaavnSongCore.extend({
     vlink: z.string(),
     primary_artists: z.string(),
     singers: z.string(),
-    video_available: z.null(),
-    triller_available: z.boolean(),
     language: z.string(),
   }),
 });
@@ -69,9 +52,5 @@ export const SaavnTrendingSongEntity = SaavnTrendingBase.extend({
     vcode: z.string().optional(),
     vlink: z.string().optional(),
     label_url: z.string().optional(),
-    rights: SaavnSongEntity.shape.more_info.shape.rights.extend({
-      delete_cached_object: z.string().optional(),
-      reason: z.string().optional(),
-    }),
   }),
 });

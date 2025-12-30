@@ -124,8 +124,8 @@ Works everywhere modern JavaScript runs:
 - **Node.js** 18+
 - **Bun**
 - **Deno**
-- **Cloudflare Workers (Node runtime)**
-- **Vercel Serverless Functions**
+- **Cloudflare Workers**
+- **Vercel Edge/Serverless Functions**
 - **AWS Lambda (Node runtime)**
 
 ---

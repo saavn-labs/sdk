@@ -1,9 +1,9 @@
-import type { EntityId, Image } from '../types/primitives';
+import type { Image } from '../types/primitives';
 import type { Context } from '../types/context';
 import type { Artist, Track } from '.';
 
 export interface Playlist {
-  id: EntityId;
+  id: string;
   type: 'playlist';
 
   title: string;

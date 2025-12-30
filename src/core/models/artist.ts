@@ -1,4 +1,4 @@
-import type { EntityId, Image } from '../types/primitives';
+import type { Image } from '../types/primitives';
 import type { Context } from '../types/context';
 import type { Album, Playlist, Track } from '.';
 
@@ -9,7 +9,7 @@ interface BioSection {
 }
 
 export interface Artist {
-  id: EntityId;
+  id: string;
   type: 'artist';
 
   name: string;

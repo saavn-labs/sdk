@@ -1,20 +1,18 @@
 import { runSaavnTestCases } from '../helpers/spec.helper';
-import { SaavnWebRadio } from '../../src/saavn/operations/web-radio/index';
+import { SaavnWebRadioSchema } from '../../src/saavn/operations';
 
 const GROUP_NAME = 'Web Radio';
 
 const testCases = [
   {
-    key: 'entityStation',
     request: 'Create Entity Station',
-    op: SaavnWebRadio.entityStation,
+    op: SaavnWebRadioSchema.entityStation,
   },
   {
-    key: 'featuredStation',
     request: 'Create Featured Station',
-    op: SaavnWebRadio.featuredStation,
+    op: SaavnWebRadioSchema.featuredStation,
   },
-  { key: 'songs', request: 'Get Station Songs', op: SaavnWebRadio.songs },
+  { request: 'Get Station Songs', op: SaavnWebRadioSchema.songs },
 ];
 
 runSaavnTestCases(GROUP_NAME, testCases);
