@@ -33,35 +33,33 @@ const WebRadioMultipleSongs = z
 
 export const SaavnWebRadioSchema = {
   entityStation: {
-    call: 'webradio.createEntityStation',
-    paramsSchema: z.strictObject({
+    params: z.strictObject({
       ctx: z.literal('android'),
       entity_type: z.literal('queue'),
       entity_id: JSONArrayString,
     }),
-    responseSchema: z.looseObject({
+    response: z.looseObject({
       stationid: z.string(),
     }),
   },
+  
   featuredStation: {
-    call: 'webradio.createFeaturedStation',
-    paramsSchema: z.strictObject({
+    params: z.strictObject({
       name: NonEmptyString,
       language: NonEmptyString,
     }),
-    responseSchema: z.looseObject({
+    response: z.looseObject({
       stationid: z.string(),
     }),
   },
 
   songs: {
-    call: 'webradio.getSong',
-    paramsSchema: z.strictObject({
+    params: z.strictObject({
       ctx: z.literal('android'),
       stationid: NonEmptyString,
       k: PositiveString.optional(),
       next: SaavnExplicitFlagSchema.optional(),
     }),
-    responseSchema: z.union([WebRadioSingleSong, WebRadioMultipleSongs]),
+    response: z.union([WebRadioSingleSong, WebRadioMultipleSongs]),
   },
 } as const;

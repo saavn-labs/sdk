@@ -64,13 +64,13 @@ export function runSaavnTestCases(
     describe(testName, () => {
       it(`validates against (${op.call})`, () => {
         const { params, response } = getPostmanCase(groupName, request);
-        const userParams = extractUserParams(params, op.paramsSchema);
+        const userParams = extractUserParams(params, op.params);
 
-        expectSchema(op.paramsSchema, userParams, `${request} > paramsSchema`);
+        expectSchema(op.params, userParams, `${request} > params`);
         expectSchema(
-          op.responseSchema,
+          op.response,
           response,
-          `${request} > responseSchema`,
+          `${request} > response`,
         );
       });
     });

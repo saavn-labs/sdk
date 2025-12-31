@@ -1,6 +1,9 @@
 import { z } from 'zod';
 import { NonEmptyString, PositiveString } from '../../primitives/string';
-import { SaavnSortBySchema, SaavnSortOrderSchema } from '../../primitives/enums';
+import {
+  SaavnSortBySchema,
+  SaavnSortOrderSchema,
+} from '../../primitives/enums';
 import {
   SaavnAlbumEntity,
   SaavnArtistEntity,
@@ -10,17 +13,15 @@ import {
 
 export const SaavnWebAPISchema = {
   album: {
-    call: 'webapi.get',
-    paramsSchema: z.strictObject({
+    params: z.strictObject({
       token: NonEmptyString,
       type: z.literal('album'),
     }),
-    responseSchema: SaavnAlbumEntity,
+    response: SaavnAlbumEntity,
   },
 
   artist: {
-    call: 'webapi.get',
-    paramsSchema: z.strictObject({
+    params: z.strictObject({
       token: NonEmptyString,
       type: z.literal('artist'),
       n_song: PositiveString.optional(),
@@ -28,37 +29,34 @@ export const SaavnWebAPISchema = {
       category: SaavnSortBySchema.optional(),
       sort_order: SaavnSortOrderSchema.optional(),
     }),
-    responseSchema: SaavnArtistEntity,
+    response: SaavnArtistEntity,
   },
 
   label: {
-    call: 'webapi.get',
-    paramsSchema: z.strictObject({
+    params: z.strictObject({
       token: NonEmptyString,
       type: z.literal('label'),
       n_song: PositiveString.optional(),
       n_album: PositiveString.optional(),
     }),
-    responseSchema: z.any(),
+    response: z.any(),
   },
 
   playlist: {
-    call: 'webapi.get',
-    paramsSchema: z.strictObject({
+    params: z.strictObject({
       token: NonEmptyString,
       type: z.literal('playlist'),
       n: PositiveString.optional(),
     }),
-    responseSchema: SaavnPlaylistEntity,
+    response: SaavnPlaylistEntity,
   },
 
   songs: {
-    call: 'webapi.get',
-    paramsSchema: z.strictObject({
+    params: z.strictObject({
       token: NonEmptyString,
       type: z.literal('song'),
     }),
-    responseSchema: z.looseObject({
+    response: z.looseObject({
       songs: z.array(SaavnSongEntity),
     }),
   },

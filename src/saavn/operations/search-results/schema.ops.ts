@@ -1,4 +1,3 @@
-// saavn/operations/search-results.ts
 import { z } from 'zod';
 import { NonEmptyString, PositiveString } from '../../primitives/string';
 import { SaavnArtistBase } from '../../entities/base';
@@ -17,11 +16,10 @@ const PageString = z.string().regex(/^\d+$/);
 
 export const SaavnSearchResultsSchema = {
   all: {
-    call: 'autocomplete.get',
-    paramsSchema: z.strictObject({
+    params: z.strictObject({
       query: NonEmptyString,
     }),
-    responseSchema: z.looseObject({
+    response: z.looseObject({
       albums: z.looseObject({
         position: z.number(),
         data: z.array(SaavnSearchAllEntity),
@@ -54,13 +52,12 @@ export const SaavnSearchResultsSchema = {
   },
 
   albums: {
-    call: 'search.getAlbumResults',
-    paramsSchema: z.strictObject({
+    params: z.strictObject({
       q: NonEmptyString,
       p: PageString.optional(),
       n: PositiveString.optional(),
     }),
-    responseSchema: z.looseObject({
+    response: z.looseObject({
       total: z.number(),
       start: z.number(),
       results: z.array(SaavnAlbumEdgeCase),
@@ -68,13 +65,12 @@ export const SaavnSearchResultsSchema = {
   },
 
   artists: {
-    call: 'search.getArtistResults',
-    paramsSchema: z.strictObject({
+    params: z.strictObject({
       q: NonEmptyString,
       p: PageString.optional(),
       n: PositiveString.optional(),
     }),
-    responseSchema: z.looseObject({
+    response: z.looseObject({
       total: z.number(),
       start: z.number(),
       results: z.array(
@@ -89,13 +85,12 @@ export const SaavnSearchResultsSchema = {
   },
 
   playlists: {
-    call: 'search.getPlaylistResults',
-    paramsSchema: z.strictObject({
+    params: z.strictObject({
       q: NonEmptyString,
       p: PageString.optional(),
       n: PositiveString.optional(),
     }),
-    responseSchema: z.looseObject({
+    response: z.looseObject({
       total: z.number(),
       start: z.number(),
       results: z.array(SaavnPlaylistEdgeCase),
@@ -103,13 +98,12 @@ export const SaavnSearchResultsSchema = {
   },
 
   songs: {
-    call: 'search.getResults',
-    paramsSchema: z.strictObject({
+    params: z.strictObject({
       q: NonEmptyString,
       p: PageString.optional(),
       n: PositiveString.optional(),
     }),
-    responseSchema: z.looseObject({
+    response: z.looseObject({
       total: z.number(),
       start: z.number(),
       results: z.array(SaavnSongEntity),
