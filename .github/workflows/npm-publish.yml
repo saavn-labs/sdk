@@ -50,6 +50,14 @@ jobs:
             exit 1
           fi
 
-      - run: npm publish
+      - name: Ensure clean working tree
+        run: |
+          if [ -n "$(git status --porcelain)" ]; then
+            echo "::error::Working tree is dirty."
+            exit 1
+          fi
+
+      - name: Publish to npm
+        run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

@@ -1,6 +1,12 @@
 import { z } from 'zod';
 
-export type EntityType = 'album' | 'artist' | 'playlist' | 'show' | 'song';
+export type EntityType =
+  | 'album'
+  | 'artist'
+  | 'label'
+  | 'playlist'
+  | 'show'
+  | 'song';
 
 export interface ClientConfig {
   baseUrl: string;
@@ -8,13 +14,21 @@ export interface ClientConfig {
   timeoutMs?: number;
 }
 
-export type SaavnOperation = {
-  call: string;
-  params: z.ZodType;
-  response: z.ZodType;
+type ImageResolution = '50x50' | '150x150' | '500x500';
+export type Image = {
+  url: string;
+  resolution: ImageResolution;
 };
 
-export interface SaavnURLToken {
+export type SaavnOperation = {
+  call: string;
+  schema: {
+    params: z.ZodType;
+    response: z.ZodType;
+  };
+};
+
+export interface SaavnPermalinkToken {
   type: EntityType;
   token: string;
 }

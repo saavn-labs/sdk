@@ -1,23 +1,11 @@
 import { z } from 'zod';
 
-/**
- * Non-empty string.
- * Used for IDs, tokens, slugs, etc.
- */
 export const NonEmptyString = z.string().min(1);
 
-/**
- * Positive number represented as string.
- * Saavn uses numbers-as-strings everywhere.
- */
 export const PositiveString = z
   .string()
   .regex(/^[1-9]\d*$/, 'Expected a positive numeric string');
 
-/**
- * Comma-separated values.
- * IDs can be numeric or alphanumeric.
- */
 export const CSVString = z
   .string()
   .min(1)
@@ -26,9 +14,7 @@ export const CSVString = z
     'Expected comma-separated non-empty values',
   );
 
-/** JSON-stringified array of non-empty strings.
- */
-export const JSONArrayString = z.string().refine(
+export const JSONStringArray = z.string().refine(
   (value) => {
     try {
       const parsed = JSON.parse(value);

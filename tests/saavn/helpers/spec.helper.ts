@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { describe, expect, it } from 'vitest';
-import { SaavnOperation } from '../../src/types';
-import { item } from '../postman/collections/JioSaavn_API_v4.postman_collection.json' assert { type: 'json' };
+import { SaavnOperation } from '../../../src/types';
+import { item } from '../../postman/collections/JioSaavn_API_v4.postman_collection.json' assert { type: 'json' };
 
 function expectSchema(schema: z.ZodType, data: unknown, name: string) {
   const result = schema.safeParse(data);
@@ -64,14 +64,10 @@ export function runSaavnTestCases(
     describe(testName, () => {
       it(`validates against (${op.call})`, () => {
         const { params, response } = getPostmanCase(groupName, request);
-        const userParams = extractUserParams(params, op.params);
+        const userParams = extractUserParams(params, op.schema.params);
 
-        expectSchema(op.params, userParams, `${request} > params`);
-        expectSchema(
-          op.response,
-          response,
-          `${request} > response`,
-        );
+        expectSchema(op.schema.params, userParams, `${request} > params`);
+        expectSchema(op.schema.response, response, `${request} > response`);
       });
     });
   });

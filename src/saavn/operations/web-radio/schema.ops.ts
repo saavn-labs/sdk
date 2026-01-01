@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import {
-  JSONArrayString,
+  JSONStringArray,
   NonEmptyString,
   PositiveString,
 } from '../../primitives/string';
@@ -13,7 +13,7 @@ const WebRadioSingleSong = z.looseObject({
 });
 
 const WebRadioMultipleSongs = z
-  .object({
+  .looseObject({
     stationid: z.string(),
   })
   .catchall(
@@ -31,19 +31,24 @@ const WebRadioMultipleSongs = z
     },
   );
 
+const WebRadioError = z.looseObject({
+  stationid: z.string().optional(),
+  error: z.string(),
+});
+
 export const SaavnWebRadioSchema = {
-  entityStation: {
+  createEntityStation: {
     params: z.strictObject({
       ctx: z.literal('android'),
       entity_type: z.literal('queue'),
-      entity_id: JSONArrayString,
+      entity_id: JSONStringArray,
     }),
     response: z.looseObject({
       stationid: z.string(),
     }),
   },
-  
-  featuredStation: {
+
+  createFeaturedStation: {
     params: z.strictObject({
       name: NonEmptyString,
       language: NonEmptyString,
@@ -60,6 +65,10 @@ export const SaavnWebRadioSchema = {
       k: PositiveString.optional(),
       next: SaavnExplicitFlagSchema.optional(),
     }),
-    response: z.union([WebRadioSingleSong, WebRadioMultipleSongs]),
+    response: z.union([
+      WebRadioSingleSong,
+      WebRadioMultipleSongs,
+      WebRadioError,
+    ]),
   },
 } as const;

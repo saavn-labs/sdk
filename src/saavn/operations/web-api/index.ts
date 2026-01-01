@@ -19,13 +19,13 @@ export const SaavnWebAPI = {
     schema: SaavnWebAPISchema.label,
     mapper: SaavnWebAPIMapper.label,
   },
-  
+
   playlist: {
     call: 'webapi.get',
     schema: SaavnWebAPISchema.playlist,
     mapper: SaavnWebAPIMapper.playlist,
   },
-  
+
   songs: {
     call: 'webapi.get',
     schema: SaavnWebAPISchema.songs,

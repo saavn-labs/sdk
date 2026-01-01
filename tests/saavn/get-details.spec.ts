@@ -1,23 +1,23 @@
-import { runSaavnTestCases } from '../helpers/spec.helper';
-import { SaavnGetDetailsSchema } from '../../src/saavn/operations';
+import { runSaavnTestCases } from './helpers/spec.helper';
+import { SaavnGetDetails } from '../../src/saavn/operations';
 
 const GROUP_NAME = 'Get Details';
 
 const testCases = [
-  { request: 'Get Album Details', op: SaavnGetDetailsSchema.album },
-  { request: 'Get Artist Details', op: SaavnGetDetailsSchema.artist },
+  { request: 'Get Album Details', op: SaavnGetDetails.album },
+  { request: 'Get Artist Details', op: SaavnGetDetails.artist },
   {
     request: 'Get Playlist Details',
-    op: SaavnGetDetailsSchema.playlist,
+    op: SaavnGetDetails.playlist,
   },
-  { request: 'Get Song Details', op: SaavnGetDetailsSchema.songs },
+  { request: 'Get Song Details', op: SaavnGetDetails.songs },
   {
     request: 'Get Top Albums Of The Year',
-    op: SaavnGetDetailsSchema.topAlbumsOfTheYear,
+    op: SaavnGetDetails.topAlbumsOfTheYear,
   },
   {
     request: 'Get Top Searches',
-    op: SaavnGetDetailsSchema.topSearches,
+    op: SaavnGetDetails.topSearches,
   },
 ];
 

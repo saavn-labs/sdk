@@ -1,6 +1,5 @@
-import type { Image } from '../types/primitives';
-import type { Context } from '../types/context';
-import type { Artist, Track } from '.';
+import type { Image } from '@/types';
+import type { Artist, Song } from '.';
 
 export interface Playlist {
   id: string;
@@ -14,7 +13,7 @@ export interface Playlist {
   images: Image[];
 
   stats?: {
-    trackCount?: number;
+    songCount?: number;
     followerCount?: number;
     fanCount?: number;
     duration?: string;
@@ -27,7 +26,7 @@ export interface Playlist {
     isFollowed?: boolean;
   };
 
-  tracks?: Track[];
+  songs?: Song[];
   artists?: Artist[];
 
   owner?: {
@@ -41,6 +40,4 @@ export interface Playlist {
     language?: string;
     lastUpdated?: number;
   };
-
-  context?: Context;
 }

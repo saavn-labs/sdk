@@ -39,9 +39,9 @@ export const SaavnPlaylistSearchEntity = SaavnPlaylistBase.extend({
   more_info: z.looseObject({
     firstname: z.string(),
     lastname: z.string().optional(),
-    artist_name: z.union([z.array(z.string()), z.null()]),
+    artist_name: z.array(z.string()).nullable(),
     entity_type: z.string(),
-    is_dolby_content: z.union([z.boolean(), z.null()]),
+    is_dolby_content: z.boolean().nullable(),
     language: z.string(),
   }),
 });

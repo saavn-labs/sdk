@@ -2,18 +2,18 @@ import { SaavnWebRadioMapper } from './mapper.ops';
 import { SaavnWebRadioSchema } from './schema.ops';
 
 export const SaavnWebRadio = {
-  entityStation: {
+  createEntityStation: {
     call: 'webradio.createEntityStation',
-    schema: SaavnWebRadioSchema.entityStation,
-    mapper: SaavnWebRadioMapper.entityStation,
+    schema: SaavnWebRadioSchema.createEntityStation,
+    mapper: SaavnWebRadioMapper.createEntityStation,
   },
 
-  featuredStation: {
+  createFeaturedStation: {
     call: 'webradio.createFeaturedStation',
-    schema: SaavnWebRadioSchema.featuredStation,
-    mapper: SaavnWebRadioMapper.featuredStation,
+    schema: SaavnWebRadioSchema.createFeaturedStation,
+    mapper: SaavnWebRadioMapper.createFeaturedStation,
   },
-  
+
   songs: {
     call: 'webradio.getSong',
     schema: SaavnWebRadioSchema.songs,

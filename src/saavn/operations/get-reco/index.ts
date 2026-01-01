@@ -3,13 +3,13 @@ import { SaavnGetRecoSchema } from './schema.ops';
 
 export const SaavnGetReco = {
   albums: {
-    call: 'reco.getreco',
+    call: 'reco.getAlbumReco',
     schema: SaavnGetRecoSchema.albums,
     mapper: SaavnGetRecoMapper.albums,
   },
 
   playlists: {
-    call: 'reco.getreco',
+    call: 'reco.getPlaylistReco',
     schema: SaavnGetRecoSchema.playlists,
     mapper: SaavnGetRecoMapper.playlists,
   },

@@ -1,10 +1,9 @@
-import type { Image } from '../types/primitives';
-import type { Context } from '../types/context';
+import type { Image } from '@/types';
 import type { Artist } from '.';
 
-export interface Track {
+export interface Song {
   id: string;
-  type: 'track';
+  type: 'song';
 
   title: string;
   subtitle?: string;
@@ -63,6 +62,4 @@ export interface Track {
     };
     releaseDate?: string;
   };
-
-  context?: Context;
 }

@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JioSaavn API Tester</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body>
+    <noscript>
+      <div
+        style="
+          text-align: center;
+          padding: 20px;
+          background: #fff5f5;
+          color: #c53030;
+        "
+      >
+        This interactive API documentation requires JavaScript to function.
+        Please enable JavaScript in your browser.
+      </div>
+    </noscript>
+
+    <div class="app-container">
+      <header class="app-header">
+        <div style="display: flex; align-items: center; gap: 12px">
+          <button
+            class="menu-toggle"
+            id="menuToggle"
+            aria-label="Toggle navigation menu"
+          >
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              aria-hidden="true"
+            >
+              <path d="M3 12h18M3 6h18M3 18h18" stroke-linecap="round" />
+            </svg>
+          </button>
+          <div class="app-title">
+            <img
+              src="https://avatars.githubusercontent.com/u/251604830?s=200"
+              alt="JioSaavn Logo"
+              class="app-logo"
+            />
+            JioSaavn API Tester
+          </div>
+        </div>
+        <div class="app-subtitle">Interactive API Documentation</div>
+      </header>
+
+      <main class="main-layout">
+        <div class="mobile-overlay" id="mobileOverlay"></div>
+
+        <aside class="sidebar" id="sidebar">
+          <div class="sidebar-header">
+            <input
+              type="text"
+              class="sidebar-search"
+              placeholder="Search endpoints..."
+              id="searchInput"
+              aria-label="Search API endpoints"
+            />
+          </div>
+          <nav
+            class="endpoints-container"
+            id="endpointsContainer"
+            aria-label="API Endpoints Navigation"
+          ></nav>
+        </aside>
+
+        <div class="content-area">
+          <nav class="mobile-tabs" id="mobileTabs" role="tablist">
+            <button
+              class="mobile-tab active"
+              data-panel="request"
+              role="tab"
+              aria-selected="true"
+            >
+              Request
+            </button>
+            <button
+              class="mobile-tab"
+              data-panel="response"
+              role="tab"
+              aria-selected="false"
+            >
+              Response
+            </button>
+          </nav>
+
+          <section class="request-panel active" aria-labelledby="endpointTitle">
+            <header class="panel-header">
+              <h2 class="panel-title" id="endpointTitle">Select an endpoint</h2>
+              <p class="panel-description" id="endpointDescription">
+                Choose an endpoint from the sidebar to begin testing
+              </p>
+            </header>
+            <div class="panel-body">
+              <div class="url-bar">
+                <div class="url-base" id="urlBase">
+                  https://api.jiosaavn.com
+                </div>
+                <div class="url-request-line">
+                  <span class="url-method" id="urlMethod">GET</span>
+                  <div class="url-display" id="urlDisplay">/api/test</div>
+                  <button class="send-btn" id="sendBtn" disabled>Send</button>
+                </div>
+                <pre
+                  class="sdk-preview"
+                ><code id="sdkPreview">SDK: Module.method()</code></pre>
+              </div>
+              <div id="paramsContainer"></div>
+            </div>
+          </section>
+
+          <section class="response-panel" aria-label="API Response">
+            <header class="response-header">
+              <div class="response-status">
+                <span id="statusBadge" role="status"></span>
+                <span class="response-time" id="responseTime"></span>
+              </div>
+              <div class="action-buttons">
+                <button
+                  class="icon-btn"
+                  id="copyBtn"
+                  style="display: none"
+                  aria-label="Copy response body"
+                >
+                  <span aria-hidden="true">📋</span><span>Copy</span>
+                </button>
+              </div>
+            </header>
+            <div class="response-tabs" role="tablist">
+              <div
+                class="response-tab active"
+                data-tab="body"
+                role="tab"
+                aria-selected="true"
+              >
+                Response
+              </div>
+            </div>
+            <div class="response-body" id="responseBody" aria-live="polite">
+              <div class="empty-state">
+                <svg
+                  class="empty-icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+                <p>Send a request to see the response</p>
+              </div>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

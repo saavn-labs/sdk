@@ -5,7 +5,7 @@ import {
   SaavnAlbumEdgeCase,
   SaavnPlaylistEdgeCase,
   SaavnSongEntity,
-  SaavnSearchAllEntity,
+  SaavnSearchAlbumEntity,
   SaavnArtistSearchEntity,
   SaavnPlaylistSearchEntity,
   SaavnSongSearchEntity,
@@ -22,31 +22,45 @@ export const SaavnSearchResultsSchema = {
     response: z.looseObject({
       albums: z.looseObject({
         position: z.number(),
-        data: z.array(SaavnSearchAllEntity),
+        data: z.array(SaavnSearchAlbumEntity),
       }),
+
       artists: z.looseObject({
         position: z.number(),
         data: z.array(SaavnArtistSearchEntity),
       }),
+
       playlists: z.looseObject({
         position: z.number(),
         data: z.array(SaavnPlaylistSearchEntity),
       }),
-      songs: z.looseObject({
-        position: z.number(),
-        data: z.array(SaavnSongSearchEntity),
-      }),
+
       shows: z.looseObject({
         position: z.number(),
         data: z.array(SaavnShowEntity),
       }),
+
+      songs: z.looseObject({
+        position: z.number(),
+        data: z.array(SaavnSongSearchEntity),
+      }),
+
       episodes: z.looseObject({
         position: z.number(),
         data: z.array(z.any()),
       }),
+
       topquery: z.looseObject({
         position: z.number(),
-        data: z.array(SaavnSongSearchEntity),
+        data: z.array(
+          z.discriminatedUnion('type', [
+            SaavnSearchAlbumEntity,
+            SaavnArtistSearchEntity,
+            SaavnPlaylistSearchEntity,
+            SaavnSongSearchEntity,
+            SaavnShowEntity,
+          ]),
+        ),
       }),
     }),
   },

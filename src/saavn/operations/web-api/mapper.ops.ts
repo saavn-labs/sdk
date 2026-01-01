@@ -1,10 +1,5 @@
 import { z } from 'zod';
-import {
-  mapAlbum,
-  mapArtistDetails,
-  mapPlaylist,
-  mapSong,
-} from '../common.mapper';
+import { mapAlbum, mapArtist, mapPlaylist, mapSong } from '../../common-mapper';
 import { SaavnWebAPISchema } from './schema.ops';
 
 export const SaavnWebAPIMapper = {
@@ -13,7 +8,7 @@ export const SaavnWebAPIMapper = {
   },
 
   artist: (data: z.infer<typeof SaavnWebAPISchema.artist.response>) => {
-    return mapArtistDetails(data);
+    return mapArtist(data);
   },
 
   label: (data: z.infer<typeof SaavnWebAPISchema.label.response>) => {
@@ -31,4 +26,3 @@ export const SaavnWebAPIMapper = {
     };
   },
 };
-

@@ -1,11 +1,10 @@
-import type { Image } from '../types/primitives';
-import type { Context } from '../types/context';
-import type { Album, Playlist, Track } from '.';
+import type { Image } from '@/types';
+import type { Album, Playlist, Song } from '.';
 
-interface BioSection {
-  title?: string;
+export interface BioSection {
+  title: string;
   text: string;
-  sequence?: number;
+  sequence: number;
 }
 
 export interface Artist {
@@ -54,9 +53,9 @@ export interface Artist {
     };
   };
 
-  tracks?: {
-    top?: Track[];
-    latest?: Track[];
+  songs?: {
+    top?: Song[];
+    latest?: Song[];
   };
 
   albums?: {
@@ -73,6 +72,4 @@ export interface Artist {
   related?: {
     similar?: Artist[];
   };
-
-  context?: Context;
 }

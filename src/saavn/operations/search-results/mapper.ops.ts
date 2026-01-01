@@ -3,146 +3,101 @@ import {
   mapAlbumEdgeCase,
   mapPlaylistEdgeCase,
   mapSong,
-  mapArtist,
-  parseImageUrls,
-} from '../common.mapper';
+  mapArtistBase,
+  mapSearchAllBase,
+} from '../../common-mapper';
 import { SaavnSearchResultsSchema } from './schema.ops';
+
+function normalizeSection(section?: { position: number; data: any[] }) {
+  return {
+    position: section?.position ?? 0,
+    data: section?.data ?? [],
+  };
+}
+
+function normalizeTopQuery(topquery: unknown) {
+  if (!topquery || Array.isArray(topquery)) {
+    return { position: 0, data: [] };
+  }
+  return {
+    position: (topquery as any).position ?? 0,
+    data: (topquery as any).data ?? [],
+  };
+}
 
 export const SaavnSearchResultsMapper = {
   all: (data: z.infer<typeof SaavnSearchResultsSchema.all.response>) => {
+    const albums = normalizeSection(data.albums);
+    const artists = normalizeSection(data.artists);
+    const playlists = normalizeSection(data.playlists);
+    const songs = normalizeSection(data.songs);
+    const shows = normalizeSection(data.shows);
+    const topquery = normalizeTopQuery(data.topquery);
+
     return {
       albums: {
-        position: data.albums.position,
-        data: data.albums.data.map((album) => ({
-          id: album.id,
-          type: 'album' as const,
-          title: album.title,
-          subtitle: album.subtitle,
-          description: album.description,
-          url: album.perma_url,
-          images: parseImageUrls(album.image),
-          flags: {
-            isExplicit: album.explicit_content === '1',
-          },
-        })),
+        position: albums.position,
+        data: albums.data.map(mapSearchAllBase).filter(Boolean),
       },
+
       artists: {
-        position: data.artists.position,
-        data: data.artists.data.map((artist) => ({
-          id: artist.id,
-          type: 'artist' as const,
-          name: artist.title,
-          url: artist.perma_url,
-          images: parseImageUrls(artist.image),
-          flags: {
-            isRadioPresent: artist.isRadioPresent,
-          },
-        })),
+        position: artists.position,
+        data: artists.data.map(mapSearchAllBase).filter(Boolean),
       },
+
       playlists: {
-        position: data.playlists.position,
-        data: data.playlists.data.map((playlist) => ({
-          id: playlist.id,
-          type: 'playlist' as const,
-          title: playlist.title,
-          subtitle: playlist.subtitle,
-          description: playlist.description,
-          url: playlist.perma_url,
-          images: parseImageUrls(playlist.image),
-          flags: {
-            isExplicit: playlist.explicit_content === '1',
-          },
-        })),
+        position: playlists.position,
+        data: playlists.data.map(mapSearchAllBase).filter(Boolean),
       },
-      songs: {
-        position: data.songs.position,
-        data: data.songs.data.map((song) => ({
-          id: song.id,
-          type: 'track' as const,
-          title: song.title,
-          subtitle: song.subtitle,
-          description: song.description,
-          url: song.perma_url,
-          images: parseImageUrls(song.image),
-          flags: {
-            isExplicit: song.explicit_content === '1',
-          },
-        })),
-      },
+
       shows: {
-        position: data.shows.position,
-        data: data.shows.data.map((show) => ({
-          id: show.id,
-          type: 'show' as const,
-          title: show.title,
-          subtitle: show.subtitle,
-          description: show.description,
-          url: show.perma_url,
-          images: parseImageUrls(show.image),
-        })),
+        position: shows.position,
+        data: shows.data.map(mapSearchAllBase).filter(Boolean),
       },
+
+      songs: {
+        position: songs.position,
+        data: songs.data.map(mapSearchAllBase).filter(Boolean),
+      },
+
       topquery: {
-        position: data.topquery.position,
-        data: data.topquery.data.map((song) => ({
-          id: song.id,
-          type: 'track' as const,
-          title: song.title,
-          subtitle: song.subtitle,
-          description: song.description,
-          url: song.perma_url,
-          images: parseImageUrls(song.image),
-          flags: {
-            isExplicit: song.explicit_content === '1',
-          },
-        })),
+        position: topquery.position,
+        data: topquery.data.map(mapSearchAllBase).filter(Boolean),
       },
     };
   },
 
-  albums: (
-    data: z.infer<typeof SaavnSearchResultsSchema.albums.response>,
-  ) => {
-    return {
-      total: data.total,
-      start: data.start,
-      results: data.results.map(mapAlbumEdgeCase),
-    };
-  },
+  albums: (data: z.infer<typeof SaavnSearchResultsSchema.albums.response>) => ({
+    total: data.total,
+    start: data.start,
+    results: data.results.map(mapAlbumEdgeCase),
+  }),
 
   artists: (
     data: z.infer<typeof SaavnSearchResultsSchema.artists.response>,
-  ) => {
-    return {
-      total: data.total,
-      start: data.start,
-      results: data.results.map((artist) => ({
-        ...mapArtist(artist),
-        flags: {
-          isRadioPresent: artist.isRadioPresent,
-          isFollowed: artist.is_followed,
-        },
-      })),
-    };
-  },
+  ) => ({
+    total: data.total,
+    start: data.start,
+    results: data.results.map((artist) => ({
+      ...mapArtistBase(artist),
+      flags: {
+        isRadioPresent: artist.isRadioPresent,
+        isFollowed: artist.is_followed,
+      },
+    })),
+  }),
 
   playlists: (
     data: z.infer<typeof SaavnSearchResultsSchema.playlists.response>,
-  ) => {
-    return {
-      total: data.total,
-      start: data.start,
-      results: data.results.map(mapPlaylistEdgeCase),
-    };
-  },
+  ) => ({
+    total: data.total,
+    start: data.start,
+    results: data.results.map(mapPlaylistEdgeCase),
+  }),
 
-  songs: (
-    data: z.infer<typeof SaavnSearchResultsSchema.songs.response>,
-  ) => {
-    return {
-      total: data.total,
-      start: data.start,
-      results: data.results.map(mapSong),
-    };
-  },
+  songs: (data: z.infer<typeof SaavnSearchResultsSchema.songs.response>) => ({
+    total: data.total,
+    start: data.start,
+    results: data.results.map(mapSong),
+  }),
 };
-

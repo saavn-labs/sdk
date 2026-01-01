@@ -1,6 +1,5 @@
-import type { Image } from '../types/primitives';
-import type { Context } from '../types/context';
-import type { Artist, Track } from '.';
+import type { Image } from '@/types';
+import type { Artist, Song } from '.';
 
 export interface Album {
   id: string;
@@ -18,7 +17,7 @@ export interface Album {
 
   stats?: {
     playCount?: number;
-    trackCount?: number;
+    songCount?: number;
   };
 
   flags?: {
@@ -32,13 +31,11 @@ export interface Album {
     all: Artist[];
   };
 
-  tracks?: Track[];
+  songs?: Song[];
 
   meta?: {
     copyright?: string;
     labelUrl?: string;
     releaseDate?: string;
   };
-
-  context?: Context;
 }

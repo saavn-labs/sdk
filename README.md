@@ -117,6 +117,142 @@ bun add @saavn-labs/sdk
 
 ---
 
+## Examples
+
+Minimal, copy-pasteable examples showing **explicit SDK usage**.
+
+**Important:** All SDK methods use **object-based parameters**. See [docs/overview.md](./docs/overview.md) and [docs/modules/](./docs/modules/) for detailed documentation.
+
+---
+
+### 1. Get Songs by ID
+
+```ts
+import { Song } from '@saavn-labs/sdk';
+
+async function main() {
+  // Get a song by its ID
+  const result = await Song.getById({ songIds: '9fH2K1aB' });
+
+  // Or with multiple IDs
+  const many = await Song.getById({ songIds: ['id1', 'id2', 'id3'] });
+
+  console.log(result.title);
+}
+
+main();
+```
+
+---
+
+### 2. Get Song by Permalink
+
+```ts
+import { Song } from '@saavn-labs/sdk';
+
+async function main() {
+  // Get a song by its permalink
+  const song = await Song.getByPermalink({
+    permalink: 'https://www.jiosaavn.com/song/tum-hi-ho/EToxUyFpcwQ',
+  });
+
+  console.log(song.id, song.title, song.duration);
+}
+
+main();
+```
+
+---
+
+### 3. Search Songs
+
+```ts
+import { Song } from '@saavn-labs/sdk';
+
+async function main() {
+  // Search for a keyword
+  const results = await Song.search({
+    query: 'lofi',
+    limit: 10, // optional, defaults to 10
+    offset: 1, // optional, defaults to 1
+  });
+
+  console.log('Total results:', results.total);
+
+  for (const song of results.items ?? []) {
+    console.log(song.title, '-', song.subtitle);
+  }
+}
+
+main();
+```
+
+---
+
+---
+
+### 4. Get Trending Albums
+
+```ts
+import { Album } from '@saavn-labs/sdk';
+
+async function main() {
+  // Get Trending Hindi Albums
+  const trending = await Album.getTrending({ language: 'hindi' });
+
+  console.log(`Found ${trending.items?.length ?? 0} trending albums`);
+}
+
+main();
+```
+
+---
+
+### 5. Cross-Entity Search
+
+```ts
+import { Extras } from '@saavn-labs/sdk';
+
+async function main() {
+  // Search across all entities
+  const results = await Extras.searchAll({ query: 'bollywood' });
+
+  console.log('Found', results.items?.length ?? 0, 'results');
+}
+
+main();
+```
+
+---
+
+## 📚 Full Module Documentation
+
+- **[Album Module](./docs/modules/album.md)** — Fetch, search, trending, and recommendations
+- **[Artist Module](./docs/modules/artist.md)** — Fetch and search artists
+- **[Song Module](./docs/modules/track.md)** — Full song API with streaming support
+- **[Playlist Module](./docs/modules/playlist.md)** — Playlist operations
+- **[Extras Module](./docs/modules/extras.md)** — Cross-entity utilities
+
+---
+
+## Error Handling
+
+All SDK methods throw `SDKError` on failure. See [docs/errors.md](./docs/errors.md) for error codes and handling patterns.
+
+```ts
+import { Album, SDKError } from '@saavn-labs/sdk';
+
+try {
+  const album = await Album.getById({ albumId: '12345' });
+} catch (err) {
+  if (err instanceof SDKError) {
+    console.error(`Error [${err.code}]: ${err.message}`);
+  }
+}
+```
+
+---
+
 ## Runtime Support
 
 Works everywhere modern JavaScript runs:
@@ -139,6 +275,8 @@ Works everywhere modern JavaScript runs:
 
 **It gives you tools, not guardrails.**
 
+For more details on design decisions, see [docs/overview.md](./docs/overview.md).
+
 ---
 
 ## Who This Is For
@@ -152,6 +290,16 @@ Works everywhere modern JavaScript runs:
 
 ---
 
+## Development & Examples
+
+See [examples/README.md](./examples/README.md) for a fully-working example server demonstrating proper SDK usage with real-world patterns.
+
+```bash
+# Run the example server
+bun run examples:api
+# Then visit http://localhost:3000
+```
+
 ## Contributing
 
 Contributions are welcome.
@@ -159,6 +307,7 @@ Contributions are welcome.
 - Keep changes focused and explicit
 - Add tests for new operations or schemas
 - Avoid introducing opinionated abstractions
+- Update module documentation in `docs/modules/` when adding new methods
 
 Tests currently replay Postman fixtures through Vitest to ensure param/response schemas stay in sync with upstream payloads.
 

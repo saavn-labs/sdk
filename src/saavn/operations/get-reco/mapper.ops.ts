@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { mapSong, parseImageUrls, mapArtist } from '../common.mapper';
+import { mapSong, parseImageUrls, mapArtist } from '../../common-mapper';
 import { SaavnGetRecoSchema } from './schema.ops';
 
 export const SaavnGetRecoMapper = {
@@ -23,9 +23,7 @@ export const SaavnGetRecoMapper = {
     }));
   },
 
-  playlists: (
-    data: z.infer<typeof SaavnGetRecoSchema.playlists.response>,
-  ) => {
+  playlists: (data: z.infer<typeof SaavnGetRecoSchema.playlists.response>) => {
     return data.map((playlist) => ({
       id: playlist.id,
       type: 'playlist' as const,

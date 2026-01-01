@@ -1,11 +1,11 @@
 import { z } from 'zod';
 import {
   mapAlbum,
-  mapArtistDetails,
+  mapArtist,
   mapPlaylist,
   mapSong,
   parseImageUrls,
-} from '../common.mapper';
+} from '../../common-mapper';
 import { SaavnGetDetailsSchema } from './schema.ops';
 
 export const SaavnGetDetailsMapper = {
@@ -14,7 +14,7 @@ export const SaavnGetDetailsMapper = {
   },
 
   artist: (data: z.infer<typeof SaavnGetDetailsSchema.artist.response>) => {
-    return mapArtistDetails(data);
+    return mapArtist(data);
   },
 
   playlist: (data: z.infer<typeof SaavnGetDetailsSchema.playlist.response>) => {
@@ -60,7 +60,7 @@ export const SaavnGetDetailsMapper = {
       } else if (item.type === 'song') {
         return {
           ...baseItem,
-          type: 'track' as const,
+          type: 'song' as const,
           album: item.more_info?.album,
         };
       }

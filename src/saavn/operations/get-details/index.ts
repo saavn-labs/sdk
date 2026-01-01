@@ -1,5 +1,5 @@
-import { SaavnGetDetailsMapper } from "./mapper.ops";
-import { SaavnGetDetailsSchema } from "./schema.ops";
+import { SaavnGetDetailsMapper } from './mapper.ops';
+import { SaavnGetDetailsSchema } from './schema.ops';
 
 export const SaavnGetDetails = {
   album: {
@@ -9,7 +9,7 @@ export const SaavnGetDetails = {
   },
 
   artist: {
-    call: 'artist.getDetails',
+    call: 'artist.getArtistPageDetails',
     schema: SaavnGetDetailsSchema.artist,
     mapper: SaavnGetDetailsMapper.artist,
   },

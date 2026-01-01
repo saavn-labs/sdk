@@ -11,7 +11,7 @@ export const SaavnAlbumEdgeCase = SaavnAlbumBase.extend({
   more_info: z.looseObject({
     query: z.string(),
     text: z.string(),
-    music: z.string(),
+    music: z.string().nullable(),
     song_count: z.string(),
     artistMap: SaavnArtistMap,
   }),
@@ -26,10 +26,10 @@ export const SaavnPlaylistEdgeCase = SaavnPlaylistSearchEntity.omit({
   }),
 });
 
-export const SaavnSearchAllEntity = SaavnAlbumCore.extend({
+export const SaavnSearchAlbumEntity = SaavnAlbumCore.extend({
   description: z.string(),
   more_info: z.looseObject({
-    music: z.string(),
+    music: z.string().nullable(),
     ctr: z.number(),
     year: z.string(),
     language: z.string(),

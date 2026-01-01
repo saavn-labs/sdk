@@ -48,7 +48,7 @@ export const SaavnGetDetailsSchema = {
     params: z.strictObject({
       pids: CSVString,
     }),
-    response: z.strictObject({
+    response: z.looseObject({
       songs: z.array(SaavnSongEntity),
     }),
   },
