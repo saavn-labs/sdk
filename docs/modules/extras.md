@@ -16,7 +16,12 @@ import { Extras } from '@saavn-labs/sdk';
 
 const res = await Extras.searchAll({ query: 'bollywood' });
 
-console.log(res.items?.length ?? 0);
+console.log({
+  albums: res.albums.data.length,
+  artists: res.artists.data.length,
+  songs: res.songs.data.length,
+  playlists: res.playlists.data.length,
+});
 ```
 
 ### `getTrendingAll()`
@@ -31,7 +36,7 @@ import { Extras } from '@saavn-labs/sdk';
 
 const res = await Extras.getTrendingAll();
 
-console.log(res.items?.slice(0, 5));
+console.log(res.slice(0, 5).map((item) => ({ type: item.type, title: item.title })));
 ```
 
 ### `createEntityStation({ songIds })`

@@ -48,7 +48,10 @@ import { Album } from '@saavn-labs/sdk';
 
 const recos = await Album.getRecommendations({ albumId: '123456' });
 
-console.log(recos.items?.length ?? 0);
+console.log(recos.length);
+recos.forEach((album) => {
+  console.log(album.title);
+});
 ```
 
 ### `getTrending({ language })`
@@ -63,7 +66,7 @@ import { Album } from '@saavn-labs/sdk';
 
 const trending = await Album.getTrending({ language: 'hindi' });
 
-console.log(trending.items?.slice(0, 5));
+console.log(trending.slice(0, 5).map((a) => a.title));
 ```
 
 ### `search({ query, limit?, offset? })`
@@ -84,5 +87,8 @@ const res = await Album.search({
   offset: 1,
 });
 
-console.log(res.items?.map((a) => a.title));
+console.log(`Found ${res.total} albums`);
+res.results.forEach((album) => {
+  console.log(album.title);
+});
 ```

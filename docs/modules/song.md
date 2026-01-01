@@ -16,11 +16,11 @@ import { Song } from '@saavn-labs/sdk';
 
 // Single song
 const single = await Song.getById({ songIds: '123456' });
+console.log(single.songs[0]?.title);
 
 // Multiple songs
 const many = await Song.getById({ songIds: ['123456', '789012', '345678'] });
-
-console.log(single.title, many.length);
+console.log(many.songs.length);
 ```
 
 ### `getByPermalink({ permalink })`
@@ -59,6 +59,9 @@ const songs = await Song.getByStationId({
 });
 
 console.log(songs[0]?.title);
+songs.forEach((song) => {
+  console.log(song.title);
+});
 ```
 
 ### `getRecommendations({ songId })`
@@ -73,7 +76,10 @@ import { Song } from '@saavn-labs/sdk';
 
 const recos = await Song.getRecommendations({ songId: '123456' });
 
-console.log(recos.items?.length ?? 0);
+console.log(recos.length);
+recos.forEach((song) => {
+  console.log(song.title);
+});
 ```
 
 ### `getTrending({ language })`
@@ -88,7 +94,7 @@ import { Song } from '@saavn-labs/sdk';
 
 const trending = await Song.getTrending({ language: 'hindi' });
 
-console.log(trending.items?.slice(0, 5));
+console.log(trending.slice(0, 5).map((s) => s.title));
 ```
 
 ### `search({ query, limit?, offset? })`
@@ -110,7 +116,7 @@ const res = await Song.search({
 });
 
 console.log(`Found ${res.total} songs`);
-res.items?.forEach((song) => {
+res.results.forEach((song) => {
   console.log(song.title, '-', song.subtitle);
 });
 ```

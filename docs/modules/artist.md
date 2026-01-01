@@ -54,5 +54,8 @@ const res = await Artist.search({
   offset: 1,
 });
 
-console.log(res.items?.map((a) => a.name));
+console.log(`Found ${res.total} artists`);
+res.results.forEach((a) => {
+  console.log(a.name);
+});
 ```

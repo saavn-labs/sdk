@@ -53,10 +53,15 @@ async function demo() {
 
   console.log({
     artist: artist.id,
-    albums: albums.items?.length ?? 0,
-    songs: songs.items?.length ?? 0,
+    albums: albums.results.length,
+    songs: songs.results.length,
     playlist: playlist.id,
-    all: all.items?.length ?? 0,
+    all: {
+      albums: all.albums.data.length,
+      artists: all.artists.data.length,
+      songs: all.songs.data.length,
+      playlists: all.playlists.data.length,
+    },
   });
 }
 

@@ -48,7 +48,10 @@ import { Playlist } from '@saavn-labs/sdk';
 
 const recos = await Playlist.getRecommendations({ playlistId: '123456' });
 
-console.log(recos.items?.length ?? 0);
+console.log(recos.length);
+recos.forEach((playlist) => {
+  console.log(playlist.title);
+});
 ```
 
 ### `getTrending({ language })`
@@ -63,7 +66,7 @@ import { Playlist } from '@saavn-labs/sdk';
 
 const trending = await Playlist.getTrending({ language: 'hindi' });
 
-console.log(trending.items?.slice(0, 5));
+console.log(trending.slice(0, 5).map((p) => p.title));
 ```
 
 ### `search({ query, limit?, offset? })`
@@ -84,5 +87,8 @@ const res = await Playlist.search({
   offset: 1,
 });
 
-console.log(res.items?.map((p) => p.title));
+console.log(`Found ${res.total} playlists`);
+res.results.forEach((p) => {
+  console.log(p.title);
+});
 ```

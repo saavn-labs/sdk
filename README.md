@@ -179,7 +179,7 @@ async function main() {
 
   console.log('Total results:', results.total);
 
-  for (const song of results.items ?? []) {
+  for (const song of results.results) {
     console.log(song.title, '-', song.subtitle);
   }
 }
@@ -200,7 +200,10 @@ async function main() {
   // Get Trending Hindi Albums
   const trending = await Album.getTrending({ language: 'hindi' });
 
-  console.log(`Found ${trending.items?.length ?? 0} trending albums`);
+  console.log(`Found ${trending.length} trending albums`);
+  trending.slice(0, 5).forEach((album) => {
+    console.log(album.title);
+  });
 }
 
 main();

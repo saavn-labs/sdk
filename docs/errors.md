@@ -20,7 +20,7 @@ import { Album, SDKError } from '@saavn-labs/sdk';
 async function safeSearch() {
   try {
     const res = await Album.search({ query: 'lofi', limit: 5 });
-    return res.items ?? [];
+    return res.results ?? [];
   } catch (err) {
     if (err instanceof SDKError) {
       switch (err.code) {
