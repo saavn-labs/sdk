@@ -1,6 +1,6 @@
 import { z } from 'zod';
-import { mapSong, parseImageUrls, mapArtist } from '../../common-mapper';
-import { SaavnGetRecoSchema } from './schema.ops';
+import { mapSong, parseImageUrls, mapArtist } from '../../common-mapper.js';
+import { SaavnGetRecoSchema } from './schema.ops.js';
 
 export const SaavnGetRecoMapper = {
   albums: (data: z.infer<typeof SaavnGetRecoSchema.albums.response>) => {

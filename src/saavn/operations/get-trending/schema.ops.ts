@@ -1,10 +1,10 @@
 import { z } from 'zod';
-import { NonEmptyString } from '../../primitives/string';
+import { NonEmptyString } from '../../primitives/string.js';
 import {
   SaavnTrendingAlbum,
   SaavnTrendingPlaylist,
   SaavnTrendingSongEntity,
-} from '../../entities';
+} from '../../entities/index.js';
 
 export const SaavnGetTrendingSchema = {
   all: {

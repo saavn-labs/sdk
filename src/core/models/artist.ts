@@ -1,4 +1,4 @@
-import type { Image } from '@/types';
+import type { Image } from '@/types.js';
 import type { Album, Playlist, Song } from '.';
 
 export interface BioSection {

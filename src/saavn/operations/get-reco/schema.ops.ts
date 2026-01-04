@@ -1,7 +1,7 @@
 import { z } from 'zod';
-import { NonEmptyString, PositiveString } from '../../primitives/string';
-import { SaavnAlbumBase, SaavnPlaylistBase } from '../../entities/base';
-import { SaavnSongEntity } from '../../entities';
+import { NonEmptyString, PositiveString } from '../../primitives/string.js';
+import { SaavnAlbumBase, SaavnPlaylistBase } from '../../entities/base.js';
+import { SaavnSongEntity } from '../../entities/index.js';
 
 export const SaavnGetRecoSchema = {
   albums: {

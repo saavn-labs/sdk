@@ -5,11 +5,11 @@ import {
   SaavnSearchResults,
   SaavnWebAPI,
   SaavnWebRadio,
-} from '@/saavn/operations';
-import { runOperation } from '@/saavn/run-operation';
-import { extractPermalinkToken } from '@/helpers/utils';
-import { fetchStreamUrls } from '@/helpers/experimental/stream-urls';
-import { SDKError } from '@/helpers/errors';
+} from '@/saavn/operations/index.js';
+import { runOperation } from '@/saavn/run-operation.js';
+import { extractPermalinkToken } from '@/helpers/utils.js';
+import { fetchStreamUrls } from '@/helpers/experimental/stream-urls/index.js';
+import { SDKError } from '@/helpers/errors.js';
 
 /**
  * Fetch a song or songs by Saavn ID.

@@ -5,8 +5,8 @@ import {
   mapSong,
   mapArtistBase,
   mapSearchAllBase,
-} from '../../common-mapper';
-import { SaavnSearchResultsSchema } from './schema.ops';
+} from '../../common-mapper.js';
+import { SaavnSearchResultsSchema } from './schema.ops.js';
 
 function normalizeSection(section?: { position: number; data: any[] }) {
   return {

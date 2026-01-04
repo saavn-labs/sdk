@@ -1,15 +1,15 @@
 import { z } from 'zod';
-import { NonEmptyString, PositiveString } from '../../primitives/string';
+import { NonEmptyString, PositiveString } from '../../primitives/string.js';
 import {
   SaavnSortBySchema,
   SaavnSortOrderSchema,
-} from '../../primitives/enums';
+} from '../../primitives/enums.js';
 import {
   SaavnAlbumEntity,
   SaavnArtistEntity,
   SaavnPlaylistEntity,
   SaavnSongEntity,
-} from '../../entities';
+} from '../../entities/index.js';
 
 export const SaavnWebAPISchema = {
   album: {

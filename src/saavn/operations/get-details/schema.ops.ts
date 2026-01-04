@@ -5,16 +5,16 @@ import {
   SaavnPlaylistEntity,
   SaavnSongEntity,
   SaavnTopSearchesEntity,
-} from '../../entities';
+} from '../../entities/index.js';
 import {
   CSVString,
   NonEmptyString,
   PositiveString,
-} from '../../primitives/string';
+} from '../../primitives/string.js';
 import {
   SaavnSortBySchema,
   SaavnSortOrderSchema,
-} from '../../primitives/enums';
+} from '../../primitives/enums.js';
 
 export const SaavnGetDetailsSchema = {
   album: {

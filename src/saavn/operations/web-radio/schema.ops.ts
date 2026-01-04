@@ -3,9 +3,9 @@ import {
   JSONStringArray,
   NonEmptyString,
   PositiveString,
-} from '../../primitives/string';
-import { SaavnExplicitFlagSchema } from '../../primitives/enums';
-import { SaavnSongEntity } from '../../entities';
+} from '../../primitives/string.js';
+import { SaavnExplicitFlagSchema } from '../../primitives/enums.js';
+import { SaavnSongEntity } from '../../entities/index.js';
 
 const WebRadioSingleSong = z.looseObject({
   song: SaavnSongEntity,

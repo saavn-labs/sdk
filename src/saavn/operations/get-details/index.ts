@@ -1,5 +1,5 @@
-import { SaavnGetDetailsMapper } from './mapper.ops';
-import { SaavnGetDetailsSchema } from './schema.ops';
+import { SaavnGetDetailsMapper } from './mapper.ops.js';
+import { SaavnGetDetailsSchema } from './schema.ops.js';
 
 export const SaavnGetDetails = {
   album: {

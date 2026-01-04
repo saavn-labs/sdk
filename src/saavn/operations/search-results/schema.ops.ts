@@ -1,6 +1,6 @@
 import { z } from 'zod';
-import { NonEmptyString, PositiveString } from '../../primitives/string';
-import { SaavnArtistBase } from '../../entities/base';
+import { NonEmptyString, PositiveString } from '../../primitives/string.js';
+import { SaavnArtistBase } from '../../entities/base.js';
 import {
   SaavnAlbumEdgeCase,
   SaavnPlaylistEdgeCase,
@@ -10,7 +10,7 @@ import {
   SaavnPlaylistSearchEntity,
   SaavnSongSearchEntity,
   SaavnShowEntity,
-} from '../../entities';
+} from '../../entities/index.js';
 
 const PageString = z.string().regex(/^\d+$/);
 

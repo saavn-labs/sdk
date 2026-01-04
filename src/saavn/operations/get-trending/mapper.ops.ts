@@ -1,12 +1,12 @@
 import { z } from 'zod';
-import { SaavnGetTrendingSchema } from './schema.ops';
-import { mapArtistBase, parseImageUrls } from '../../common-mapper';
+import { SaavnGetTrendingSchema } from './schema.ops.js';
+import { mapArtistBase, parseImageUrls } from '../../common-mapper.js';
 import type { Album, Playlist, Song } from '@/core/models';
 import type {
   SaavnTrendingAlbum,
   SaavnTrendingPlaylist,
   SaavnTrendingSongEntity,
-} from '@/saavn/entities';
+} from '@/saavn/entities/index.js';
 
 export function mapTrendingAlbum(
   data: z.infer<typeof SaavnTrendingAlbum>,

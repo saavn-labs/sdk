@@ -1,10 +1,10 @@
-import { SDKError } from '@/helpers/errors';
+import { SDKError } from '@/helpers/errors.js';
 import {
   SaavnGetTrending,
   SaavnSearchResults,
   SaavnWebRadio,
-} from '@/saavn/operations';
-import { runOperation } from '@/saavn/run-operation';
+} from '@/saavn/operations/index.js';
+import { runOperation } from '@/saavn/run-operation.js';
 
 export function stringArrayToJSONStringArray(value: readonly string[]): string {
   if (!Array.isArray(value) || value.length === 0) {

@@ -4,7 +4,7 @@ import {
   SaavnSongCore,
   SaavnSongBase,
   SaavnTrendingBase,
-} from './base';
+} from './base.js';
 
 export const SaavnSongEntity = SaavnSongBase.extend({
   more_info: z.looseObject({

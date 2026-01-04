@@ -1,5 +1,5 @@
-import { SaavnGetTrendingMapper } from './mapper.ops';
-import { SaavnGetTrendingSchema } from './schema.ops';
+import { SaavnGetTrendingMapper } from './mapper.ops.js';
+import { SaavnGetTrendingSchema } from './schema.ops.js';
 
 export const SaavnGetTrending = {
   all: {

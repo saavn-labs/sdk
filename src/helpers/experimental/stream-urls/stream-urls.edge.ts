@@ -1,4 +1,4 @@
-import { fetchFromSaavn } from '@/helpers/fetch';
+import { fetchFromSaavn } from '@/helpers/fetch.js';
 
 const AUDIO_QUALITIES = [
   { id: '_12', bitrate: '12kbps' },

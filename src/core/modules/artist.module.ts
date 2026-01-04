@@ -2,10 +2,10 @@ import {
   SaavnGetDetails,
   SaavnSearchResults,
   SaavnWebAPI,
-} from '@/saavn/operations';
-import { runOperation } from '@/saavn/run-operation';
-import { extractPermalinkToken } from '@/helpers/utils';
-import { SDKError } from '@/helpers/errors';
+} from '@/saavn/operations/index.js';
+import { runOperation } from '@/saavn/run-operation.js';
+import { extractPermalinkToken } from '@/helpers/utils.js';
+import { SDKError } from '@/helpers/errors.js';
 
 /**
  * Fetch an artist by Saavn ID.

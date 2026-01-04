@@ -1,7 +1,7 @@
 import { z } from 'zod';
-import { mapSong } from '../../common-mapper';
-import { SaavnWebRadioSchema } from './schema.ops';
-import type { SaavnSongEntity } from '../../entities';
+import { mapSong } from '../../common-mapper.js';
+import { SaavnWebRadioSchema } from './schema.ops.js';
+import type { SaavnSongEntity } from '../../entities/index.js';
 
 export const SaavnWebRadioMapper = {
   createEntityStation: (

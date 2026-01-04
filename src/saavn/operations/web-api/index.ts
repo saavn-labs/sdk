@@ -1,5 +1,5 @@
-import { SaavnWebAPIMapper } from './mapper.ops';
-import { SaavnWebAPISchema } from './schema.ops';
+import { SaavnWebAPIMapper } from './mapper.ops.js';
+import { SaavnWebAPISchema } from './schema.ops.js';
 
 export const SaavnWebAPI = {
   album: {

@@ -1,5 +1,5 @@
-import { SaavnSearchResultsMapper } from './mapper.ops';
-import { SaavnSearchResultsSchema } from './schema.ops';
+import { SaavnSearchResultsMapper } from './mapper.ops.js';
+import { SaavnSearchResultsSchema } from './schema.ops.js';
 
 export const SaavnSearchResults = {
   all: {

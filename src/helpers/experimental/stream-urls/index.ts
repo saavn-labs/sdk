@@ -1,6 +1,6 @@
-import { SDKError, experimentalError } from '@/helpers/errors';
-import { generateStreamUrlsNode } from './stream-urls.node';
-import { generateStreamUrlsEdge } from './stream-urls.edge';
+import { SDKError, experimentalError } from '@/helpers/errors.js';
+import { generateStreamUrlsNode } from './stream-urls.node.js';
+import { generateStreamUrlsEdge } from './stream-urls.edge.js';
 
 export type Runtime = 'node' | 'edge';
 

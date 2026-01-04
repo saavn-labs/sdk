@@ -1,4 +1,4 @@
-import type { Image } from '@/types';
+import type { Image } from '@/types.js';
 import type { Artist, Song } from '.';
 
 export interface Playlist {

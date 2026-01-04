@@ -1,6 +1,6 @@
 import { z } from 'zod';
-import { mapAlbum, mapArtist, mapPlaylist, mapSong } from '../../common-mapper';
-import { SaavnWebAPISchema } from './schema.ops';
+import { mapAlbum, mapArtist, mapPlaylist, mapSong } from '../../common-mapper.js';
+import { SaavnWebAPISchema } from './schema.ops.js';
 
 export const SaavnWebAPIMapper = {
   album: (data: z.infer<typeof SaavnWebAPISchema.album.response>) => {

@@ -4,7 +4,7 @@
  * @internal
  */
 
-import { pickUserAgent } from './utils';
+import { pickUserAgent } from './utils.js';
 
 /**
  * API context/environment to use for requests

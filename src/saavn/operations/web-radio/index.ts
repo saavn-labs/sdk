@@ -1,5 +1,5 @@
-import { SaavnWebRadioMapper } from './mapper.ops';
-import { SaavnWebRadioSchema } from './schema.ops';
+import { SaavnWebRadioMapper } from './mapper.ops.js';
+import { SaavnWebRadioSchema } from './schema.ops.js';
 
 export const SaavnWebRadio = {
   createEntityStation: {

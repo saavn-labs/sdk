@@ -4,8 +4,8 @@ import {
   SaavnAlbumCore,
   SaavnArtistBase,
   SaavnArtistMap,
-} from './base';
-import { SaavnPlaylistSearchEntity } from './playlist.entity';
+} from './base.js';
+import { SaavnPlaylistSearchEntity } from './playlist.entity.js';
 
 export const SaavnAlbumEdgeCase = SaavnAlbumBase.extend({
   more_info: z.looseObject({

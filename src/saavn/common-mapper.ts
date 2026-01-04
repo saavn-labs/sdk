@@ -1,17 +1,17 @@
 import { z } from 'zod';
-import type { Image } from '@/types';
+import type { Image } from '@/types.js';
 import type { Album, Artist, BioSection, Playlist, Song } from '@/core/models';
-import type { SaavnArtistBase } from '@/saavn/entities/base';
+import type { SaavnArtistBase } from '@/saavn/entities/base.js';
 import type {
   SaavnAlbumEntity,
   SaavnArtistEntity,
   SaavnPlaylistEntity,
   SaavnSongEntity,
-} from '@/saavn/entities';
+} from '@/saavn/entities/index.js';
 import type {
   SaavnAlbumEdgeCase,
   SaavnPlaylistEdgeCase,
-} from '@/saavn/entities/extras';
+} from '@/saavn/entities/extras.js';
 
 export function parseImageUrls(imageUrl?: string): Image[] {
   if (!imageUrl) return [];

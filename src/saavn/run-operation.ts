@@ -1,12 +1,12 @@
 import { z, ZodError, type ZodType } from 'zod';
-import { fetchFromSaavn } from '@/helpers/fetch';
+import { fetchFromSaavn } from '@/helpers/fetch.js';
 import {
   fromZodError,
   networkError,
   internalError,
   SDKError,
   detectSaavnApiError,
-} from '@/helpers/errors';
+} from '@/helpers/errors.js';
 
 type AnyZodSchema = ZodType<unknown, any, any>;
 

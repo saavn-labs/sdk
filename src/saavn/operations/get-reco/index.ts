@@ -1,5 +1,5 @@
-import { SaavnGetRecoMapper } from './mapper.ops';
-import { SaavnGetRecoSchema } from './schema.ops';
+import { SaavnGetRecoMapper } from './mapper.ops.js';
+import { SaavnGetRecoSchema } from './schema.ops.js';
 
 export const SaavnGetReco = {
   albums: {

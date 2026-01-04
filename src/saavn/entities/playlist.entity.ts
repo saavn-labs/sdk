@@ -1,6 +1,6 @@
 import { z } from 'zod';
-import { SaavnArtistBase, SaavnPlaylistBase, SaavnTrendingBase } from './base';
-import { SaavnSongEntity } from './song.entity';
+import { SaavnArtistBase, SaavnPlaylistBase, SaavnTrendingBase } from './base.js';
+import { SaavnSongEntity } from './song.entity.js';
 
 export const SaavnPlaylistEntity = z.lazy(() =>
   SaavnPlaylistBase.extend({

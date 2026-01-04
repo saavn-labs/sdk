@@ -1,6 +1,6 @@
 import { z } from 'zod';
-import { SaavnArtistBase } from './base';
-import { SaavnAlbumEdgeCase, SaavnPlaylistEdgeCase, SaavnSongEntity } from '.';
+import { SaavnArtistBase } from './base.js';
+import { SaavnAlbumEdgeCase, SaavnPlaylistEdgeCase, SaavnSongEntity } from './index.js';
 
 export const SaavnArtistEntity = z.lazy(() =>
   SaavnArtistBase.omit({

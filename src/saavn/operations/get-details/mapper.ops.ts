@@ -5,8 +5,8 @@ import {
   mapPlaylist,
   mapSong,
   parseImageUrls,
-} from '../../common-mapper';
-import { SaavnGetDetailsSchema } from './schema.ops';
+} from '../../common-mapper.js';
+import { SaavnGetDetailsSchema } from './schema.ops.js';
 
 export const SaavnGetDetailsMapper = {
   album: (data: z.infer<typeof SaavnGetDetailsSchema.album.response>) => {
