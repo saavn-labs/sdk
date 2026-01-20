@@ -7,6 +7,28 @@ A low-level, type-safe TypeScript SDK over **JioSaavn’s native API**, built fo
 [![license](https://img.shields.io/npm/l/@saavn-labs/sdk?style=for-the-badge)](./LICENSE)
 
 **This is not a product API. This is the foundation everything else is built on.**
+ 
+## Table of contents
+
+- [Why This Exists](#why-this-exists)
+- [What This SDK Guarantees](#what-this-sdk-guarantees)
+- [Design Principles](#design-principles)
+- [Operations](#operations)
+- [Installation](#installation)
+- [Examples](#examples)
+  - [Get Songs by ID](#1-get-songs-by-id)
+  - [Get Song by Permalink](#2-get-song-by-permalink)
+  - [Search Songs](#3-search-songs)
+  - [Get Trending Albums](#4-get-trending-albums)
+  - [Cross-Entity Search](#5-cross-entity-search)
+- [Full Module Documentation](#full-module-documentation)
+- [Error Handling](#error-handling)
+- [Runtime Support](#runtime-support)
+- [What This SDK Does NOT Do](#what-this-sdk-does-not-do)
+- [Development & Examples](#development--examples)
+- [Contributing](#contributing)
+- [Legal Notice](#legal-notice)
+- [License](#license)
 
 This SDK mirrors Saavn’s native operations at the boundary, while exposing stable, domain-level outputs to consumers.
 
@@ -70,30 +92,14 @@ This package is the **single source of truth** for interacting with JioSaavn’s
 
 ---
 
-## Architecture
+## Operations
 
-```
-@saavn-labs/sdk
-├── saavn        # ODD: Native Saavn operations, params, and raw response schemas
-├── core         # DDD: Stable SDK entities, primitives, and modules
-├── mappers      # Bridges from Saavn responses to domain entities
-├── transport    # Request lifecycle, fetch utilities, and user-agent rotation
-└── types        # Public TypeScript types and endpoint contracts
-```
-
-- **`saavn/` (Operations-Driven Design)** mirrors JioSaavn’s native calls (`call`, `params`, `response`) and stays close to upstream payloads.
-- **`core/` (Domain-Driven Design)** is the long-lived surface for consumers; shapes change only in majors.
-- **`mappers/`** connect raw Saavn responses to domain entities when normalization is needed.
-- **`transport/`** provides the thin HTTP layer (`fetchFromSaavn`) with context selection, UA rotation, and timeouts.
-
-### Operations currently modeled (0.x)
-
-- `get-details` (song, album, artist, playlist, top albums of the year, top searches)
+- `get-details` (album, artist, playlist, song, top albums of the year, top searches)
 - `get-reco` (album, playlist, song)
 - `get-trending` (all, albums, playlists, songs)
-- `search-results`
-- `web-api`
-- `web-radio`
+- `search-results` (all, albums, artists, playlists, songs)
+- `web-api` (album, artist, playlist, songs)
+- `web-radio` (ceate stations, get station songs)
 
 Each operation ships Zod schemas for both parameters and raw responses, validated against recorded Postman fixtures in `tests/postman/collections`.
 

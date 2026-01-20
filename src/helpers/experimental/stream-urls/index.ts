@@ -1,8 +1,23 @@
 import { SDKError, experimentalError } from '@/helpers/errors.js';
-import { generateStreamUrlsNode } from './stream-urls.node.js';
 import { generateStreamUrlsEdge } from './stream-urls.edge.js';
 
 export type Runtime = 'node' | 'edge';
+
+async function loadNodeImpl() {
+  if (
+    typeof process === 'undefined' ||
+    !process.versions?.node
+  ) {
+    throw new SDKError(
+      'UNSUPPORTED_RUNTIME',
+      'Node runtime required for node stream URL generation',
+    );
+  }
+
+  const mod = await import('./stream-urls.node.js');
+  return mod.generateStreamUrlsNode;
+}
+
 
 /**
  * ⚠️ EXPERIMENTAL
@@ -33,8 +48,10 @@ export async function fetchStreamUrls(
   }
 
   switch (runtime) {
-    case 'node':
+    case 'node': {
+      const generateStreamUrlsNode = await loadNodeImpl();
       return generateStreamUrlsNode(encryptedUrl);
+    }
 
     case 'edge':
       return generateStreamUrlsEdge(encryptedUrl);
