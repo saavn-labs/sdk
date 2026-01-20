@@ -1,6 +1,6 @@
 {
   "name": "@saavn-labs/sdk",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A low-level, type-safe TypeScript SDK over JioSaavn’s native API, built for developers who want full control, predictable contracts, and long-term stability.",
   "type": "module",
   "main": "./dist/index.js",
