@@ -8,7 +8,7 @@ export { SDKError } from './helpers/errors.js';
 export type { SDKErrorCode } from './helpers/errors.js';
 export { fetchFromSaavn } from "./helpers/fetch.js"; 
 
-export * from './core/models/index.js';
+export * as Models from './core/models/index.js';
 
 export { schemas, type Schemas } from './schemas/index.js';
 
