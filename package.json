@@ -66,6 +66,8 @@
   },
   "homepage": "https://github.com/saavn-labs/sdk#readme",
   "dependencies": {
+    "@types/crypto-js": "^4.2.2",
+    "crypto-js": "^4.2.0",
     "zod": "^4.2.1"
   },
   "devDependencies": {

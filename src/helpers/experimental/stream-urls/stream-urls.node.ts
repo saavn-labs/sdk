@@ -1,4 +1,4 @@
-import crypto from 'node:crypto';
+import CryptoJS from 'crypto-js';
 
 const AUDIO_QUALITIES = [
   { id: '_12', bitrate: '12kbps' },
@@ -12,22 +12,27 @@ export function generateStreamUrlsNode(encryptedUrl: string) {
   if (!encryptedUrl) return [];
 
   try {
-    const key = Buffer.from('38346591', 'utf8');
+    const key = CryptoJS.enc.Utf8.parse('38346591');
 
-    const decipher = crypto.createDecipheriv('des-ecb', key, null);
+    const decrypted = CryptoJS.DES.decrypt(
+      encryptedUrl,
+      key,
+      {
+        mode: CryptoJS.mode.ECB,
+        padding: CryptoJS.pad.Pkcs7,
+      },
+    );
 
-    decipher.setAutoPadding(true);
+    const decryptedText = decrypted.toString(CryptoJS.enc.Utf8);
 
-    const decrypted =
-      decipher.update(encryptedUrl, 'base64', 'utf8') + decipher.final('utf8');
-
-    if (!decrypted) return [];
+    if (!decryptedText) return [];
 
     return AUDIO_QUALITIES.map((q) => ({
       bitrate: q.bitrate,
-      url: decrypted.replace('_96', q.id),
+      url: decryptedText.replace('_96', q.id),
     }));
-  } catch {
+  } catch (error) {
+    console.error('Decryption failed:', error);
     return [];
   }
 }
