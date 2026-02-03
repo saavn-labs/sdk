@@ -336,7 +336,7 @@ Tests currently replay Postman fixtures through Vitest to ensure param/response 
 
 ## License
 
-**MIT** © 2025 Saavn Labs
+**MIT** © 2026 Saavn Labs
 
 See [LICENSE](./LICENSE) for details.
 

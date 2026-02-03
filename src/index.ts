@@ -6,7 +6,7 @@ export { ExtrasModule as Extras } from './core/modules/extras.module.js';
 
 export { SDKError } from './helpers/errors.js';
 export type { SDKErrorCode } from './helpers/errors.js';
-export { fetchFromSaavn } from "./helpers/fetch.js"; 
+export { fetchFromSaavn, setFetchConfig } from "./helpers/fetch.js"; 
 
 export * as Models from './core/models/index.js';
 

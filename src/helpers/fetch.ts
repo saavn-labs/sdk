@@ -3,7 +3,6 @@
  * @module fetch
  * @internal
  */
-
 import { pickUserAgent } from './utils.js';
 
 /**
@@ -20,7 +19,7 @@ export interface FetchParams {
   /** API call to op (e.g., 'song.getDetails') */
   call: string;
   /** Query parameters for the API call */
-  params?: Record<string, string | number | boolean>;
+  params?: Record<string, unknown>;
   /** API context to use (default: 'web6dot0') */
   context?: ClientContext;
   /** Base URL for the JioSaavn API (e.g. your own proxy) */
@@ -35,7 +34,9 @@ export interface FetchParams {
   timeoutMs?: number;
 }
 
-const BASE_URL = 'https://www.jiosaavn.com';
+let BASE_URL = 'https://www.jiosaavn.com';
+let defaultHeaders: Record<string, string> = {};
+let defaultUserAgents: string[] | undefined;
 
 export interface FetchResponse {
   data: unknown;
@@ -43,6 +44,11 @@ export interface FetchResponse {
   status: number;
 }
 
+/**
+ * Fetch data from JioSaavn API
+ * @param params Fetch parameters
+ * @returns Fetch response containing data, ok status, and HTTP status code
+ */
 export const fetchFromSaavn = async ({
   call,
   params = {},
@@ -54,7 +60,6 @@ export const fetchFromSaavn = async ({
   fetch: fetchImpl = globalThis.fetch,
 }: FetchParams): Promise<FetchResponse> => {
   const url = new URL(`${baseUrl}/api.php`);
-
   url.searchParams.append('__call', call);
   url.searchParams.append('_format', 'json');
   url.searchParams.append('_marker', '0');
@@ -74,16 +79,36 @@ export const fetchFromSaavn = async ({
     const res = await fetchImpl(url.toString(), {
       headers: {
         'Content-Type': 'application/json',
-        'User-Agent': pickUserAgent(userAgents),
+        'User-Agent': pickUserAgent(userAgents || defaultUserAgents),
+        ...defaultHeaders,
         ...headers,
       },
       signal: controller?.signal,
     });
 
     const data = await res.json();
-
     return { data, ok: res.ok, status: res.status };
   } finally {
     if (timer) clearTimeout(timer);
+  }
+};
+
+/**
+ * Set global configuration for fetch requests
+ * @param config Configuration object
+ */
+export const setFetchConfig = (config: {
+  baseUrl?: string;
+  defaultHeaders?: Record<string, string>;
+  userAgents?: string[];
+}) => {
+  if (config.baseUrl) {
+    BASE_URL = config.baseUrl;
+  }
+  if (config.defaultHeaders) {
+    defaultHeaders = config.defaultHeaders;
+  }
+  if (config.userAgents) {
+    defaultUserAgents = config.userAgents;
   }
 };
